@@ -1,7 +1,27 @@
-venv/
+# Ignore Python cache
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+yolovenv/
+env/
+venv/
+
+# Ignore datasets (too large for Git)
+data/images/
+data/labels/
+
+# Ignore YOLO training outputs
 runs/
-logs/
+
+# Ignore model weights
 *.pt
-*.log
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore OS-specific files
 .DS_Store
+Thumbs.db
