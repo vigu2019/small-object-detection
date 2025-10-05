@@ -1,6 +1,6 @@
-train: C:/Users/VIGU/small-object-detection/data/images/train
-val: C:/Users/VIGU/small-object-detection/data/images/val
-test: C:/Users/VIGU/small-object-detection/data/images/test
+train: images/train
+val: images/val
+test: images/test
 
-nc: 3
-names: ["cup", "airplane", "chair"]
+nc: 10
+names: ['airplane','ship','storage-tank','baseball-diamond','tennis-court','basketball-court','ground-track-field','harbor','bridge','vehicle']
