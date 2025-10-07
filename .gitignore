@@ -13,7 +13,7 @@ venv/
 #data/labels/
 
 # Ignore YOLO training outputs
-runs/
+#runs/
 
 # Ignore model weights
 *.pt
