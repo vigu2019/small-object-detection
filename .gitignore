@@ -1,5 +1,4 @@
-# Ignore Python cache
-__pycache__/
+# Ignore Python cache__pycache__/
 *.pyc
 *.pyo
 *.pyd
@@ -10,8 +9,8 @@ env/
 venv/
 
 # Ignore datasets (too large for Git)
-data/images/
-data/labels/
+#data/images/
+#data/labels/
 
 # Ignore YOLO training outputs
 runs/
