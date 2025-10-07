@@ -16,7 +16,7 @@ venv/
 #runs/
 
 # Ignore model weights
-*.pt
+#*.pt
 
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
