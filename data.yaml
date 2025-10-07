@@ -1,6 +1,6 @@
-train: images/train
-val: images/val
-test: images/test
+train: ./data/images/train
+val: ./data/images/val
+test: ./data/images/test
 
 nc: 10
 names: ['airplane','ship','storage-tank','baseball-diamond','tennis-court','basketball-court','ground-track-field','harbor','bridge','vehicle']
