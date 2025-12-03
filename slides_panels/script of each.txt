@@ -1,0 +1,35 @@
+Selected panels (8 total)
+
+Top 3 to show on a single slide: 076, 144, 171
+
+076_jpg.rf.c5e93c92750cb2898641c185f5d19674.jpg
+Short (slide): Correct small-object detection — model focuses on the object region.
+Long (report): This example shows a correct detection of a small object in a cluttered scene. The prediction (middle) includes a tight bounding box with high confidence, and the heatmap (right) concentrates activation on the object region, demonstrating that the model’s attention aligns with the true target despite low pixel support. This supports the claim that the model learns useful local features for small targets.
+
+144_jpg.rf.c3384454a602d3d8b9fb03a9fd3cc916.jpg
+Short (slide): Missed / low-confidence case — heatmap indicates distracting background activation.
+Long (report): In this failed detection the model does not generate a bounding box for the ground-truth object. The attention heatmap highlights nearby background structures rather than the true object area, indicating the network was distracted by high-frequency or context features. This illustrates a common failure mode (background confusion / scale) and motivates future improvements in feature discrimination for tiny objects.
+
+171_jpg.rf.40a442ee84cdf921b87ac22bdd7ca356.jpg
+Short (slide): Hard example (occlusion/clutter) — diffuse activation and partial focus on object.
+Long (report): This example contains occlusion and heavy clutter, producing a partially correct detection. The heatmap shows diffuse activation with some focus on the visible portion of the object, explaining why the detector produced either a low-confidence or incomplete bounding box. The panel highlights that occlusion reduces discriminative signal and is a principal limitation for small-object detectors in crowded scenes.
+
+100_jpg.rf.7086be2e98473b245adb76fe49d438fb.jpg
+Short: Correct detection with sharp attention around the object.
+Long: The model successfully localizes a relatively isolated small object; the heatmap is tightly concentrated on the object area. This indicates strong local evidence and good feature representation when background clutter is minimal. Such cases drive the observed improvements in precision for small-scale targets.
+
+106_jpg.rf.4f700848562ecdf9c40fb3d791309e3d.jpg
+Short: Small object detected at low scale — focused, but lower confidence.
+Long: This panel shows a very small target detected with modest confidence. The attention map remains focused on the object but covers a very small pixel area, explaining the reduced confidence. It demonstrates that while the model can localize tiny objects, limited input resolution constrains certainty.
+
+168_jpg.rf.4f523ff7e755577ecdcc6c126b6ee16f.jpg
+Short: False positive — heatmap indicates spurious activation on background.
+Long: Here the model produces a false positive: the prediction marks a region that is not a true object. The attention heatmap reveals non-discriminative activation in that background region, which explains the erroneous detection. This example illustrates a common precision failure and suggests further work on negative sampling or background suppression during training.
+
+267_jpg.rf.05ef16b60e14acb25b2c0d690d11aed6.jpg
+Short: Successful detection in a cluttered scene — attention remains object-centric.
+Long: The model detects the small object despite significant scene clutter and nearby distractors. The heatmap is concentrated on the object region rather than on adjacent clutter, indicating robust local feature extraction. Such cases show how the chosen architectural improvements help the model ignore distracting context.
+
+304_jpg.rf.93e8a2e5ac96c98b697359e7fa96a8a2.jpg
+Short: Low-recall example — partial activation and missed bounding box.
+Long: This panel demonstrates a typical low-recall failure: the detector either missed the object or produced a weak bounding box. The attention map shows only partial activation over the object area, implying that the learned features were insufficiently discriminative. This motivates targeted data augmentation and anchor/feature tuning for very small targets.

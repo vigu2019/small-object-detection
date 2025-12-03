@@ -1,0 +1,1 @@
+**Small-object detection (typical).** Left: original. Middle: model detected a small object with moderate confidence. Right: attention overlay highlights the object region despite limited pixels.

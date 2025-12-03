@@ -1,0 +1,1 @@
+**Correct detection.** Left: original. Middle: model prediction (bounding boxes + confidence). Right: attention overlay highlights the object region supporting the model's decision.

@@ -24,3 +24,8 @@ venv/
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
+.venv/
+__pycache__/
+*.pt
+gradcam_output/predictions/
+gradcam_output/heatmaps/
