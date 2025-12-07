@@ -1,0 +1,61 @@
+0000002_00005_d_0000014.jpg
+
+Short 
+
+Dense VisDrone scene — many small objects are detected and the heatmap is sharply focused on them.
+
+Long 
+This VisDrone example shows a crowded aerial scene with several small objects such as vehicles and pedestrians. Our baseline VisDrone model detects most of these instances, and the prediction panel in the middle is filled with bounding boxes and reasonable confidence scores. In the heatmap, activation is concentrated exactly over these predicted objects and remains low in the empty road regions. This indicates that the network’s attention is aligned with the true targets rather than random background, which is the behaviour we expect from a good small-object detector.
+
+0000002_00448_d_0000015.jpg
+
+Short 
+
+Correct localization of multiple small targets with clean, object-centric attention.
+
+Long:
+
+In this image the detector correctly localizes several small traffic participants that appear at a distance from the camera. The bounding boxes in the prediction panel are tight around the objects, showing good localization. The heatmap panel shows strong, compact activations on these regions, with very little energy in irrelevant areas. This confirms that the model is extracting discriminative features for tiny objects and focusing its internal attention on the correct positions in the VisDrone scene.
+
+ 0000003_00231_d_0000016.jpg
+
+Short 
+
+Robust to scale and perspective — small objects at different depths are detected and highlighted.
+
+Long:
+
+This VisDrone panel contains objects at different scales and at an oblique viewing angle, which is typical for UAV footage. The prediction image shows that the baseline model successfully detects both closer and farther objects. In the heatmap, we see multiple “hot spots” exactly over these instances, while the rest of the scene receives only weak activation. This demonstrates that the multi-scale design of YOLO, combined with VisDrone-style training, helps the network remain robust to scale and perspective changes for small objects.
+
+ 0000008_04499_d_0000045.jpg
+
+Short 
+
+Cluttered urban scene where the model still focuses on true objects instead of background.
+
+Long:
+
+In this cluttered urban environment there are many potential distractors such as buildings, road markings and textured background regions. The prediction panel shows that the detector concentrates its boxes on meaningful objects, such as cars and pedestrians. The heatmap confirms this behaviour: the highest activations are over the detected objects, whereas the building facades and other background areas are relatively cool. This example is useful to show that, on VisDrone, our baseline model can ignore a high level of clutter and still maintain object-centric attention.
+
+ 0000010_05149_d_0000057.jpg
+
+Short 
+
+Difficult lighting case where the model still preserves reasonable attention on key objects.
+
+Long:
+
+This frame represents a more challenging VisDrone condition, for example low contrast or evening lighting. Despite the difficulty, the prediction image shows that the model is still able to detect a subset of the important objects in the scene. The heatmap has clear activation over these detections, even though the overall response is weaker than in bright, high-contrast images. We use this as a positive but challenging example to illustrate that the baseline model retains some robustness to lighting variations, while still revealing its limitations in very dark or low-contrast regions.
+
+2 Scripts for BAD / limitation examples
+
+Missed tiny objects / low recall
+
+Background confusion / false positives
+
+Diffuse attention / partial detection
+
+
+
+
+
