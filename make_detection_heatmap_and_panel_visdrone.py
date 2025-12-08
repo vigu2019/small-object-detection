@@ -27,6 +27,25 @@ PRED_DIR   = "gradcam_output_visdrone/predictions"
 HEAT_DIR   = "gradcam_output_visdrone/heatmaps"
 PANEL_DIR  = "gradcam_output_visdrone/panels"
 
+# ---------------------------------------------------------
+# Only process selected VisDrone images
+# ---------------------------------------------------------
+USE_SELECTION = True
+
+SELECTED_BASENAMES = [
+    "0000010_05149_d_0000057.jpg",
+    "0000030_00754_d_0000036.jpg",
+    "0000042_02421_d_0000076.jpg",
+    "0000045_01032_d_0000085.jpg",
+    "0000046_00720_d_0000088.jpg",
+    "0000056_00727_d_0000111.jpg",
+    "0000068_04169_d_0000014.jpg",
+    "0000071_03281_d_0000004.jpg",
+    "0000071_05298_d_0000008.jpg",
+    "0000071_06447_d_0000009.jpg",
+]
+
+
 os.makedirs(PRED_DIR,  exist_ok=True)
 os.makedirs(HEAT_DIR,  exist_ok=True)
 os.makedirs(PANEL_DIR, exist_ok=True)
@@ -95,7 +114,11 @@ def overlay_heatmap(img_rgb, heatmap, alpha=0.5):
 # -------------------------
 # PROCESS IMAGES
 # -------------------------
-img_paths = sorted(glob.glob(os.path.join(ORIG_DIR, "*.jpg")))
+if USE_SELECTION:
+    img_paths = [os.path.join(ORIG_DIR, name) for name in SELECTED_BASENAMES]
+else:
+    img_paths = sorted(glob.glob(os.path.join(ORIG_DIR, "*.*")))
+
 print(f"Found {len(img_paths)} VisDrone images.")
 
 for path in tqdm(img_paths):
