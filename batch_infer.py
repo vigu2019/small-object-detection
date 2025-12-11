@@ -1,5 +1,5 @@
 # batch_infer.py
-from ultralytics import YOLO
+from ultralytics_backup import YOLO
 import glob, os, cv2
 
 # ----------------------

@@ -1,6 +1,6 @@
-train: data_final/train/images
-val: data_final/val/images
-test: data_final/test/images
+train: data_final/train
+val: data_final/val
+test: data_final/test
 
 nc: 10
 names: ["pedestrian","people","bicycle","car","van","truck","tricycle","awning-tricycle","bus","motor"]

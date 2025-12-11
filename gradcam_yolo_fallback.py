@@ -14,7 +14,7 @@ import cv2
 import numpy as np
 import torch
 import torchvision
-from ultralytics import YOLO
+from ultralytics_backup import YOLO
 from torchvision import transforms
 from torchcam.methods import SmoothGradCAMpp
 from torchvision import models

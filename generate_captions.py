@@ -11,7 +11,7 @@ Logic:
 This is heuristic-based for quick report-ready captions.
 """
 import os, glob, cv2, json
-from ultralytics import YOLO
+from ultralytics_backup import YOLO
 
 PANEL_DIR = "gradcam_output/panels"
 ORIG_DIR = "gradcam_output/originals"

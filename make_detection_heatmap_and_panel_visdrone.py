@@ -14,7 +14,7 @@ but it clearly shows where the detector focuses.
 """
 
 import os, glob, cv2, numpy as np
-from ultralytics import YOLO
+from ultralytics_backup import YOLO
 from tqdm import tqdm
 import matplotlib.cm as cm
 

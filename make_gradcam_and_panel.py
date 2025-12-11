@@ -1,6 +1,6 @@
 # make_gradcam_and_panel.py (fixed for different grad-cam versions)
 import os, glob, cv2, numpy as np, torch
-from ultralytics import YOLO
+from ultralytics_backup import YOLO
 from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 from pytorch_grad_cam.utils.image import show_cam_on_image

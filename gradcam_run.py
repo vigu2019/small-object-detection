@@ -1,4 +1,4 @@
-from ultralytics import YOLO
+from ultralytics_backup import YOLO
 import cv2
 import torch
 import numpy as np

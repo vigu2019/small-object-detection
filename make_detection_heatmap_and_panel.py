@@ -7,7 +7,7 @@ This is NOT gradient-based Grad-CAM. It's an attention approximation
 derived from predicted boxes (centered Gaussians weighted by confidence).
 """
 import os, glob, cv2, numpy as np
-from ultralytics import YOLO
+from ultralytics_backup import YOLO
 from tqdm import tqdm
 
 MODEL_PATH = "best.pt"   # your trained model
