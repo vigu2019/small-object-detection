@@ -1,0 +1,29 @@
+# ================================
+# Optimizer & LR Strategy (Member 3)
+# ================================
+
+# Optimizer
+optimizer: AdamW
+lr0: 0.001              # initial learning rate
+lrf: 0.01               # final LR factor (lr0 * lrf)
+momentum: 0.9
+weight_decay: 0.01
+
+# LR Scheduler
+cos_lr: true            # cosine decay
+
+# Warmup
+warmup_epochs: 3.0
+warmup_momentum: 0.8
+warmup_bias_lr: 0.1
+
+# Loss gains (kept default-safe)
+box: 7.5
+cls: 0.5
+dfl: 1.5
+
+# Regularization
+label_smoothing: 0.0
+
+# SBLA compatibility
+anchor_t: 4.0
