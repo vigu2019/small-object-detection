@@ -18,6 +18,9 @@ Examples:
 """
 
 from .c2f_cloatt import C2fCloAtt
+from .socs import SOCS
+from .agbifpn_socs import AGBiFPN_SOCS
+
 
 
 from .block import (
