@@ -1,1 +1,0 @@
-**Missed detection.** Left: original. Middle: model produced no detection. Right: attention map shows activation away from the true object — indicates confusion due to clutter/scale.

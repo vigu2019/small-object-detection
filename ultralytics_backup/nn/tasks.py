@@ -12,6 +12,8 @@ import torch.nn as nn
 
 from ultralytics_backup.nn.autobackend import check_class_names
 from ultralytics_backup.nn.modules.c2f_cloatt import C2fCloAtt
+from custom_layers import ELAM
+
 
 from ultralytics_backup.nn.modules import (
     AIFI,
