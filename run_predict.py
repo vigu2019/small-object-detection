@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 
-MODEL_PATH = "runs/detect/train_cloatt_elam_50ep/weights/best.pt"
-SOURCE = "data_final/test/images"   # ← IMPORTANT FIX
+MODEL_PATH = "runs/detect/train18/weights/best.pt"
+SOURCE = "data_final/test/images"
 
 if __name__ == "__main__":
     model = YOLO(MODEL_PATH)
