@@ -1,0 +1,22 @@
+# Training / outputs
+runs/
+outputs/
+video_data/
+uploads/
+
+# Weights and videos
+*.pt
+*.pth
+*.mp4
+*.avi
+*.mov
+
+# Caches
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
