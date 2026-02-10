@@ -1,0 +1,16 @@
+train: C:/Users/VIGU/small-object-detection/data_final/train/images
+val: C:/Users/VIGU/small-object-detection/data_final/val/images
+test: C:/Users/VIGU/small-object-detection/data_final/test/images
+
+nc: 10
+names:
+  - pedestrian
+  - people
+  - bicycle
+  - car
+  - van
+  - truck
+  - tricycle
+  - awning-tricycle
+  - bus
+  - motor

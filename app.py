@@ -4,10 +4,6 @@ from fastapi.staticfiles import StaticFiles
 from ultralytics import YOLO
 import uuid, os, shutil
 import video
-from fastapi.staticfiles import StaticFiles
-import os
-
-
 
 app = FastAPI()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -18,11 +14,12 @@ app.mount(
     name="videos",
 )
 
-
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],          
+    allow_credentials=False,    
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -39,14 +36,12 @@ app.mount("/outputs", StaticFiles(directory=OUTPUT_DIR), name="outputs")
 baseline_model = YOLO("models/baseline.pt")
 enhanced_model = YOLO("models/enhanced.pt")
 
-
 @app.post("/predict/video")
 async def predict_video(
     file: UploadFile = File(...),
     model_type: str = Form(...)
 ):
     return video.run_video(file, model_type)
-
 
 @app.post("/predict")
 async def predict(
@@ -55,14 +50,13 @@ async def predict(
 ):
     uid = str(uuid.uuid4())
     img_path = os.path.join(UPLOAD_DIR, f"{uid}.jpg")
-
-
     with open(img_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
     model = baseline_model if model_type == "baseline" else enhanced_model
 
     results = model(img_path, conf=0.25)
+    results = model(img_path, conf=0.25, save=False)
     result = results[0]
 
     out_path = os.path.join(OUTPUT_DIR, f"{uid}_pred.jpg")
@@ -78,5 +72,4 @@ async def predict(
         "total": sum(counts.values()),
         "counts": counts
     }
-
 

@@ -1,0 +1,16 @@
+train: Data/images/train
+val: Data/images/val
+test: Data/images/test
+
+nc: 10
+names:
+  - airplane
+  - ship
+  - storage-tank
+  - baseball-diamond
+  - tennis-court
+  - basketball-court
+  - ground-track-field
+  - harbor
+  - bridge
+  - vehicle
