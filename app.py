@@ -39,16 +39,6 @@ app.add_middleware(
 # Serve outputs folder
 app.mount("/outputs", StaticFiles(directory=OUTPUT_DIR), name="outputs")
 
-# -------------------------------------------------
-# Load Models (CPU only)
-# -------------------------------------------------
-
-baseline_model = YOLO("models/baseline.pt")
-enhanced_model = YOLO("models/enhanced.pt")
-
-# -------------------------------------------------
-# Video Endpoint
-# -------------------------------------------------
 
 @app.post("/predict/video")
 async def predict_video(
@@ -57,9 +47,6 @@ async def predict_video(
 ):
     return video.run_video(file, model_type)
 
-# -------------------------------------------------
-# Image Endpoint
-# -------------------------------------------------
 
 @app.post("/predict")
 async def predict(
@@ -72,7 +59,8 @@ async def predict(
     with open(img_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    model = baseline_model if model_type == "baseline" else enhanced_model
+    model_path = "models/baseline.pt" if model_type == "baseline" else "models/enhanced.pt"
+    model = YOLO(model_path)
 
     results = model(img_path, conf=0.25)
     result = results[0]
