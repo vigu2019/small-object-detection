@@ -180,9 +180,13 @@ The detection system is integrated with:
 ## Authors
 
 Vignesh Murali
+
 Shivani Krishnan
+
 Neha A R
+
 Poorvaja M Sooraj
+
 
 
 ## 📜 Future Work
