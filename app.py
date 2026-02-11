@@ -2,39 +2,53 @@ from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from ultralytics import YOLO
-import uuid, os, shutil
+import uuid
+import os
+import shutil
 import video
 
-app = FastAPI()
+# -------------------------------------------------
+# Base paths
+# -------------------------------------------------
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-app.mount(
-    "/videos",
-    StaticFiles(directory=os.path.join(BASE_DIR, "outputs", "videos")),
-    name="videos",
-)
+UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
+VIDEO_OUTPUT_DIR = os.path.join(OUTPUT_DIR, "videos")
+
+# Create folders if not exist (important for Render)
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(VIDEO_OUTPUT_DIR, exist_ok=True)
+
+# -------------------------------------------------
+# FastAPI App
+# -------------------------------------------------
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          
-    allow_credentials=False,    
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
-OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
-
-os.makedirs(UPLOAD_DIR, exist_ok=True)
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
+# Serve outputs folder
 app.mount("/outputs", StaticFiles(directory=OUTPUT_DIR), name="outputs")
+
+# -------------------------------------------------
+# Load Models (CPU only)
+# -------------------------------------------------
 
 baseline_model = YOLO("models/baseline.pt")
 enhanced_model = YOLO("models/enhanced.pt")
+
+# -------------------------------------------------
+# Video Endpoint
+# -------------------------------------------------
 
 @app.post("/predict/video")
 async def predict_video(
@@ -43,6 +57,10 @@ async def predict_video(
 ):
     return video.run_video(file, model_type)
 
+# -------------------------------------------------
+# Image Endpoint
+# -------------------------------------------------
+
 @app.post("/predict")
 async def predict(
     file: UploadFile = File(...),
@@ -50,13 +68,13 @@ async def predict(
 ):
     uid = str(uuid.uuid4())
     img_path = os.path.join(UPLOAD_DIR, f"{uid}.jpg")
+
     with open(img_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
     model = baseline_model if model_type == "baseline" else enhanced_model
 
     results = model(img_path, conf=0.25)
-    results = model(img_path, conf=0.25, save=False)
     result = results[0]
 
     out_path = os.path.join(OUTPUT_DIR, f"{uid}_pred.jpg")
@@ -68,8 +86,7 @@ async def predict(
         counts[name] = counts.get(name, 0) + 1
 
     return {
-        "image_url": f"http://localhost:8000/outputs/{uid}_pred.jpg",
+        "image_url": f"/outputs/{uid}_pred.jpg",
         "total": sum(counts.values()),
         "counts": counts
     }
-
