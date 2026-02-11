@@ -177,6 +177,13 @@ The detection system is integrated with:
 * Small Target Detection in Aerial Imaging
 
 ---
+## Authors
+
+Vignesh Murali
+Shivani Krishnan
+Neha A R
+Poorvaja M Sooraj
+
 
 ## 📜 Future Work
 
